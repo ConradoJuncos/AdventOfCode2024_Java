@@ -1,4 +1,4 @@
-package day1.pt1;
+package day1;
 
 import java.util.List;
 
@@ -9,6 +9,14 @@ public class NumberLists {
     public NumberLists(List<Integer> firstList, List<Integer> secondList) {
         this.firstList = firstList;
         this.secondList = secondList;
+    }
+
+    public List<Integer> getFirstList() {
+        return firstList;
+    }
+
+    public List<Integer> getSecondList() {
+        return secondList;
     }
 
     public int getFirstListSize() {
@@ -30,5 +38,20 @@ public class NumberLists {
             sum += Math.abs(firstListNum - secondListNum);
         }
         return sum;
+    }
+
+    public int getSimilarityScore() {
+        int similarityScore = 0;
+        int size = this.getFirstListSize();
+        for (int i = 0; i < size; i++) {
+            int secondListCount = 0;
+            for (int j = 0; j < size; j++) {
+                if (firstList.get(i).equals(secondList.get(j))) {
+                    secondListCount += 1;
+                }
+            }
+            similarityScore += (firstList.get(i) * secondListCount);
+        }
+    return similarityScore;
     }
 }
